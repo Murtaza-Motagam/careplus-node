@@ -8,7 +8,7 @@ const PatientSchema = new mongoose.Schema({
     fullName: { type: String },
     dateOfBirth: { type: Date },
     gender: { type: String, enum: ['Male', 'Female', 'Other', 'Prefer not to say'] },
-    mobNo: { type: String, unique: true },
+    mobNo: { type: String},
     address: { type: String },
     emergencyContact: {
       name: { type: String },
