@@ -5,6 +5,8 @@ const PatientSchema = new mongoose.Schema({
   password: { type: String, required: true },
   isActive: { type: Boolean, default: true },
   personalInfo: {
+    firstName: { type: String },
+    lastName: { type: String },
     fullName: { type: String },
     dateOfBirth: { type: Date },
     gender: { type: String, enum: ['Male', 'Female', 'Other', 'Prefer not to say'] },

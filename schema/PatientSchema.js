@@ -4,7 +4,9 @@ const PatientValidationSchema = z.object({
   emailId: z.string().email("Invalid email address").min(1, "Email is required"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
   personalInfo: z.object({
-    fullName: z.string().min(1, "Full name is required"),
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+    fullName: z.string().min(1, "Name is required"),
     dateOfBirth: z.date().optional(),
     gender: z.enum(['Male', 'Female', 'Other', 'Prefer not to say']).optional(),
     mobNo: z.string().optional(),

@@ -50,7 +50,7 @@ const register = async (req, res) => {
         let authtoken = jwt.sign(data, JWT_SECRET);
         success = true;
 
-        res.status(200).json({ success, message: "You're all set! Welcome aboard!", authtoken, module: 'patient', "patientDetails": patient });
+        res.status(200).json({ success, message: "You're all set! Welcome aboard!", authtoken, module: 'patient', details: patient });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some Error Occurred.");
@@ -89,7 +89,7 @@ const login = async (req, res) => {
 
             const authtoken = jwt.sign(data, JWT_SECRET);
             success = true;
-            res.status(200).json({ success, message: "Login successful! Welcome back!", authtoken, module: 'patient', "patientDetails": patient });
+            res.status(200).json({ success, message: "Login successful! Welcome back!", authtoken, module: 'patient', details: patient });
         }
 
     } catch (error) {
