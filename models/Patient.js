@@ -11,6 +11,7 @@ const PatientSchema = new mongoose.Schema({
     dateOfBirth: { type: Date },
     gender: { type: String, enum: ['Male', 'Female', 'Other', 'Prefer not to say'] },
     mobNo: { type: String},
+    countryCode: { type: String},
     country: { type: String },
     state: { type: String },
     city: { type: String },

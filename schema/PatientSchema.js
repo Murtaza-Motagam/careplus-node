@@ -10,6 +10,7 @@ const PatientValidationSchema = z.object({
     dateOfBirth: z.date().optional(),
     gender: z.enum(['Male', 'Female', 'Other', 'Prefer not to say']).optional(),
     mobNo: z.string().optional(),
+    countryCode: z.string().optional(),
     country: z.string().optional(),
     state: z.string().optional(),
     city: z.string().optional(),
