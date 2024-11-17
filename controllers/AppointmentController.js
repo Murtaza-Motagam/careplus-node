@@ -45,8 +45,29 @@ const patientDetails = async (req, res) => {
     }
 };
 
+const getPatientDetails = async (req, res) => {
+    let success = false;
+    try {
+        const patientId = req.patient.id;
+
+        // Find appointments associated with the patient
+        const details = await Appointment.find({ patient: patientId }).populate('patient', '-password');
+
+        if (!details || details.length === 0) {
+            return res.status(404).json({ success, message: "No appointments found for this patient." });
+        }
+
+        success = true;
+        res.json({ success, data: details });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+};
+
 
 
 module.exports = {
-    patientDetails
+    patientDetails,
+    getPatientDetails
 }
