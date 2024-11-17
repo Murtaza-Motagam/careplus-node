@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const PatientSchema = new mongoose.Schema({
-  emailId: { type: String, required: true, unique: true },
+  emailId: { type: String, required: true },
   password: { type: String, required: true },
   isActive: { type: Boolean, default: true },
   personalInfo: {
@@ -28,11 +28,6 @@ const PatientSchema = new mongoose.Schema({
     existingMedicalConditions: { type: [String], default: [] },
     currentMedications: { type: [String], default: [] },
     familyMedicalHistory: { type: [String], default: [] }
-  },
-  insuranceDetail: {
-    insuranceProvider: { type: String },
-    insuranceID: { type: String, unique: true },
-    coverageDetails: { type: String }
   },
   additionalInfo: {
     occupation: { type: String },

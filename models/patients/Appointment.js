@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const AppointmentSchema = new mongoose.Schema({
-    user: {
+    patient: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'patient'
     },
     patientDetails: {
         fullName: { type: String },
-        emailId: { type: String, unique: true },
+        emailId: { type: String,  required: true },
         countryCode: { type: String, default: '91' },
         mobNo: { type: String },
         dateOfBirth: { type: Date },
@@ -25,7 +25,6 @@ const AppointmentSchema = new mongoose.Schema({
         appointmentId: {
             type: String,
             required: true,
-            unique: true,
             default: function () {
                 return `APPT-${Math.floor(Math.random() * 1000000)}`;
             }
@@ -35,7 +34,6 @@ const AppointmentSchema = new mongoose.Schema({
         appointmentStatus: { type: Number, default: 0 },
         location: { type: String },
         appointmentType: { type: String, enum: ['Virtual', 'In-person'] },
-        insuranceInfo: { type: String },
         emergencyContact: {
             name: { type: String },
             relationship: { type: String },

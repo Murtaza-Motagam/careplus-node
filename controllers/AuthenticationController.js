@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const Patient = require('../models/Patient');
-const PatientValidationSchema = require('../schema/PatientSchema');
 var jwt = require('jsonwebtoken');
 const JWT_SECRET = 'UserIsValidated';
 
@@ -16,7 +15,7 @@ const register = async (req, res) => {
         return res.status(400).json({ success, errors: errors.array() });
     }
 
-    const patientData = PatientValidationSchema.parse(req.body);
+    const patientData = req.body;
 
     try {
         const { emailId, password } = patientData;
