@@ -42,11 +42,6 @@ const savePersonalDetail = async (req, res) => {
             personalInfo.fullName = `${personalInfo.firstName} ${personalInfo.lastName}`
         }
 
-        if (req.file) {
-            const normalizedPath = req.file.path.replace(/\\/g, '/');
-            personalInfo.profileImg = normalizedPath;
-        }
-
         const updatedPatient = await Patient.findOneAndUpdate(
             { _id: patientId },
             {
