@@ -1,12 +1,18 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const Patient = require('../models/Patient');
+const path = require('path');
 
 const fetchPatient = async (req, res) => {
     let success = false;
     try {
         let patientId = req.patient.id;
         const details = await Patient.findById(patientId).select("-password");
+
+        // Ensure the profileImg path is properly formatted
+        if (details.personalInfo.profileImg) {
+            details.personalInfo.profileImg = details.personalInfo.profileImg.replace(/\\/g, '/');
+        }
         success = true;
         res.json({ success, details });
     }
@@ -32,12 +38,13 @@ const savePersonalDetail = async (req, res) => {
 
     try {
         const { personalInfo = {} } = req.body;
-        if(personalInfo.firstName && personalInfo.lastName){
+        if (personalInfo.firstName && personalInfo.lastName) {
             personalInfo.fullName = `${personalInfo.firstName} ${personalInfo.lastName}`
         }
-        
+
         if (req.file) {
-            patient.personalInfo.profilePicture = req.file.path; // Save file path to the model
+            const normalizedPath = req.file.path.replace(/\\/g, '/');
+            personalInfo.profileImg = normalizedPath;
         }
 
         const updatedPatient = await Patient.findOneAndUpdate(
