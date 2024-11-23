@@ -97,23 +97,8 @@ const login = async (req, res) => {
     }
 };
 
-const fetchPatient = async (req, res) => {
-    let success = false;
-    try {
-        let patientId = req.patient.id;
-        const details = await Patient.findById(patientId).select("-password");
-        success = true;
-        res.json({ success, details });
-    }
-    catch (error) {
-        console.error(error.message);
-        res.status(500).send("Internal Server Error");
-    }
-}
-
 
 module.exports = {
     register,
-    login,
-    fetchPatient
+    login
 }

@@ -5,11 +5,12 @@ const PatientSchema = new mongoose.Schema({
   password: { type: String, required: true },
   isActive: { type: Boolean, default: true },
   personalInfo: {
+    profileImg: { type: String },
     firstName: { type: String },
     lastName: { type: String },
     fullName: { type: String },
     dateOfBirth: { type: Date },
-    gender: { type: String, enum: ['Male', 'Female', 'Other', 'Prefer not to say'] },
+    gender: { type: String, enum: ['Male', 'Female', 'Other'] },
     mobNo: { type: String},
     countryCode: { type: String},
     country: { type: String },

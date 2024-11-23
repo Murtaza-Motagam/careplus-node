@@ -13,6 +13,7 @@ app.use(express.json());
 // Routers Section starts here
 // Patient Routes
 app.use('/api/patient/auth', require('./routes/patient-routes/authRoutes'))
+app.use('/api/patient', require('./routes/patient-routes/profileRoutes'))
 app.use('/api/patient/appointment', require('./routes/patient-routes/appointmentRoutes'))
 
 app.get('/', (req, res) => {
