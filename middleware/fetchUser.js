@@ -2,7 +2,7 @@ const  jwt = require('jsonwebtoken');
 const JWT_SECRET = 'UserIsValidated';
 
 
-const fetchPatient = (req, res, next) => {
+const fetchUser = (req, res, next) => {
     const token = req.header('Authorization');
 
     if(!token){
@@ -11,7 +11,7 @@ const fetchPatient = (req, res, next) => {
 
     try {
         const data = jwt.verify(token, JWT_SECRET);
-        req.patient = data.patient;
+        req.user = data.user;
         next();    
     } 
     catch (error) {
@@ -21,4 +21,4 @@ const fetchPatient = (req, res, next) => {
 
 
 
-module.exports = fetchPatient;
+module.exports = fetchUser;
